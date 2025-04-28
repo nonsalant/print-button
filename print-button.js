@@ -15,7 +15,7 @@ class PrintElement extends HTMLElement {
         const ariaLabel = this.label ? '' : `aria-label="Print"`;
 
         return `
-			<button style="${buttonStyles}" ${ariaLabel}>
+			<button style="${buttonStyles}" type="button" ${ariaLabel}>
 				${svg}
 				${label}
 			</button>
