@@ -19,8 +19,11 @@ class PrintElement extends HTMLElement {
         const label = this.label ? `<span>${escapeHtml(this.label)}</span>` : '';
         const ariaLabel = this.label ? '' : `aria-label="Print"`;
 
+        // If the button is disabled, add the disabled attribute
+        const disabled = this.hasAttribute('disabled') ? 'disabled' : '';
+
         return `
-            <button ${ariaLabel} class="button" type="button">
+            <button ${disabled} ${ariaLabel} class="button" type="button">
                 ${svg}
                 ${label}
             </button>
