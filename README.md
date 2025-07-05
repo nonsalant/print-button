@@ -36,6 +36,7 @@ Just the icon:
 
 ## Attributes and Content
 - `print-target` attribute: CSS selector of the element to print. By default (if not provided), it prints the whole page except for the button itself.
+- `disabled` attribute: setting it on the custom element will disable the button inside.
 - Content: The text content of the button. If left empty, `aria-label="Print"` is added to the button (which will be a simple icon button).
 
 ## Including the script
