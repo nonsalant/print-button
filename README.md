@@ -41,14 +41,27 @@ Just the icon:
 
 ## Including the script
 
-The script can be included anywhere on the page... 
-- as a module:
+### From a local file
+Download the `print-button.js` file and include it in your project.
+
+As a module:
 ```html
 <script type="module" src="print-button.js"></script>
 ```
-- or as a non-module script tag:
+Or as a non-module script tag:
 ```html
 <script src="print-button.js"></script>
+```
+
+### From a CDN
+You can also include the script from a CDN:
+```html
+<script type="module" src="https://unpkg.com/print-button/print-button.js"></script>
+```
+
+Or, for non-module usage:
+```html
+<script src="https://unpkg.com/print-button/print-button.js"></script>
 ```
 
 ## How it works

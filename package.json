@@ -1,0 +1,22 @@
+{
+  "name": "print-button",
+  "version": "1.0.0",
+  "description": "A print button web component that allows users to print specific content.",
+  "type": "module",
+  "main": "print-button.js",
+  "keywords": [
+    "web-component",
+    "print",
+    "button",
+    "user-interface"
+  ],
+  "author": "Stefan Matei (https://stefanmatei.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nonsalant/print-button.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nonsalant/print-button/issues"
+  },
+  "homepage": "https://github.com/nonsalant/print-button#readme"
+}
