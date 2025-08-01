@@ -40,6 +40,7 @@ export default class PrintButton extends HTMLElement {
         setTimeout(() => {
             this.label = this.innerHTML;
             this.innerHTML = this.buttonTemplate();
+            this.removeAttribute('disabled'); // buttonTemplate() will handle the disabled state
             this.attachEvent();
         });
     }
