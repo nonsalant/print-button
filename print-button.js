@@ -1,4 +1,4 @@
-class PrintElement extends HTMLElement {
+export default class PrintButton extends HTMLElement {
     buttonTemplate() {
         const svgStyles = `width: 1em; height: 1em;`;
 
@@ -32,12 +32,12 @@ class PrintElement extends HTMLElement {
 
     constructor() {
         super();
+        const selector = this.getAttribute('print-target');
+        this.printTarget = document.querySelector(selector);
     }
     
     connectedCallback() {
         setTimeout(() => {
-            const selector = this.getAttribute('print-target');
-            this.printTarget = document.querySelector(selector);
             this.label = this.innerHTML;
             this.innerHTML = this.buttonTemplate();
             this.attachEvent();
@@ -45,6 +45,7 @@ class PrintElement extends HTMLElement {
     }
 
     disconnectedCallback() {
+        window.removeEventListener("afterprint", this.clearDontPrintClasses);
         this.clearDontPrintClasses();
         this.removeGlobalStyles();
     }
@@ -52,7 +53,9 @@ class PrintElement extends HTMLElement {
     attachEvent() {
         this.querySelector('button').addEventListener('click', () => {
             this.addGlobalStyles();
-            this.clearDontPrintClasses();
+            // this.clearDontPrintClasses();
+            window.removeEventListener("afterprint", this.clearDontPrintClasses);
+            window.addEventListener("afterprint", this.clearDontPrintClasses);
 
             const el = this.printTarget;
             if (!el) {
@@ -77,7 +80,7 @@ class PrintElement extends HTMLElement {
         if (!document.querySelector('#dont-print-style')) {
             const style = document.createElement('style');
             style.id = 'dont-print-style';
-            style.textContent = `.dont-print { @media print { display: none !important; } }`;
+            style.textContent = `.dont-print, .button { @media print { display: none !important; } }`;
             document.head.appendChild(style);
         }
     }
@@ -88,21 +91,16 @@ class PrintElement extends HTMLElement {
 
     printOnly(element) {
         let currentElement = element;
-        while (currentElement) {
-            if (!currentElement.parentNode) break;
-            let sibling = currentElement.parentNode.firstChild;
-            while (sibling) {
-                if (sibling !== currentElement) {
-                    if (sibling.nodeType === 1) // ensure it's an element
-                        sibling.classList.add('dont-print');
-                }
-                sibling = sibling.nextSibling;
-            }
-            // Move to the parent element
-            currentElement = currentElement.parentNode;
+        while (currentElement?.parentElement) {
+            // Get all sibling elements using Array.from and children
+            Array.from(currentElement.parentElement.children)
+                .filter(sibling => sibling !== currentElement)
+                .forEach(sibling => sibling.classList.add('dont-print'));
+                
+            currentElement = currentElement.parentElement;
         }
     }
 
 }
 
-customElements.define('print-button', PrintElement);
+customElements.define('print-button', PrintButton);
