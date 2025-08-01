@@ -102,7 +102,7 @@ export default class PrintButton extends HTMLElement {
         }
     }
 
-    // Define the custom element unless already defined
+    // Statically define the element unless ?define=false is set as an URL param
     static tag = "print-button";
     static define(tag = this.tag) {
         this.tag = tag;
