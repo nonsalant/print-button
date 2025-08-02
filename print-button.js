@@ -1,4 +1,4 @@
-export default class PrintButton extends HTMLElement {
+class PrintButton extends HTMLElement {
     buttonTemplate() {
         const svgStyles = `width: 1em; height: 1em;`;
 
@@ -102,18 +102,6 @@ export default class PrintButton extends HTMLElement {
         }
     }
 
-    // Statically define the element unless ?define=false is set as an URL param
-    static tag = "print-button";
-    static define(tag = this.tag) {
-        this.tag = tag;
-        const name = customElements.getName(this);
-        if (name) return console.warn(`${this.name} already defined as <${name}>!`);
-        const ce = customElements.get(tag);
-        if (Boolean(ce) && ce !== this) return console.warn(`<${tag}> already defined as ${ce.name}!`);
-        customElements.define(tag, this);
-    }
-    static {
-        const tag = new URL(import.meta.url).searchParams.get("define") || this.tag;
-        if (tag !== "false") this.define(tag);
-    }
 }
+
+customElements.define('print-button', PrintButton);

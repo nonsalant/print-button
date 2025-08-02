@@ -50,7 +50,7 @@ As a module:
 ```
 Or as a non-module script tag:
 ```html
-<script src="print-button.js"></script>
+<script defer src="print-button.js"></script>
 ```
 
 ### From a CDN
@@ -61,7 +61,7 @@ You can also include the script from a CDN:
 
 Or, for non-module usage:
 ```html
-<script src="https://unpkg.com/print-button/print-button.js"></script>
+<script defer src="https://unpkg.com/print-button/print-button.js"></script>
 ```
 
 ## How it works
