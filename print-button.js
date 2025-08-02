@@ -1,6 +1,6 @@
 class PrintButton extends HTMLElement {
     buttonTemplate() {
-				const buttonStyles = `display: flex; gap: .25em; align-items: center;`;
+        const buttonStyles = `display: flex; gap: .25em; align-items: center;`;
         const svgStyles = `width: 1em; height: 1em;`;
 
         const svg = `
@@ -34,10 +34,10 @@ class PrintButton extends HTMLElement {
     constructor() {
         super();
         const selector = this.getAttribute('print-target');
-				this.removeAttribute('disabled'); // buttonTemplate() will handle the disabled state
+        this.removeAttribute('disabled'); // buttonTemplate() will handle the disabled state
         this.printTarget = document.querySelector(selector);
     }
-    
+
     connectedCallback() {
         setTimeout(() => {
             this.label = this.innerHTML;
@@ -98,11 +98,11 @@ class PrintButton extends HTMLElement {
             Array.from(currentElement.parentElement.children)
                 .filter(sibling => sibling !== currentElement)
                 .forEach(sibling => sibling.classList.add('dont-print'));
-                
+
             currentElement = currentElement.parentElement;
         }
     }
-	
+
 }
 
 customElements.define('print-button', PrintButton);
