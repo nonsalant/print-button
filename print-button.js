@@ -1,5 +1,6 @@
 class PrintButton extends HTMLElement {
     buttonTemplate() {
+				const buttonStyles = `display: flex; gap: .25em; align-items: center;`;
         const svgStyles = `width: 1em; height: 1em;`;
 
         const svg = `
@@ -23,7 +24,7 @@ class PrintButton extends HTMLElement {
         const disabled = this.hasAttribute('disabled') ? 'disabled' : '';
 
         return `
-            <button ${disabled} ${ariaLabel} class="button" type="button">
+            <button ${disabled} ${ariaLabel} style="${buttonStyles}" type="button">
                 ${svg}
                 ${label}
             </button>
@@ -33,6 +34,7 @@ class PrintButton extends HTMLElement {
     constructor() {
         super();
         const selector = this.getAttribute('print-target');
+				this.removeAttribute('disabled'); // buttonTemplate() will handle the disabled state
         this.printTarget = document.querySelector(selector);
     }
     
@@ -40,7 +42,6 @@ class PrintButton extends HTMLElement {
         setTimeout(() => {
             this.label = this.innerHTML;
             this.innerHTML = this.buttonTemplate();
-            this.removeAttribute('disabled'); // buttonTemplate() will handle the disabled state
             this.attachEvent();
         });
     }
@@ -101,7 +102,7 @@ class PrintButton extends HTMLElement {
             currentElement = currentElement.parentElement;
         }
     }
-
+	
 }
 
 customElements.define('print-button', PrintButton);

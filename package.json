@@ -1,6 +1,6 @@
 {
   "name": "print-button",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A print button web component that allows users to print specific content.",
   "main": "print-button.js",
   "keywords": [
